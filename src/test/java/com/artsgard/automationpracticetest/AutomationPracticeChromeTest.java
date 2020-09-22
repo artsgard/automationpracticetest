@@ -16,6 +16,9 @@ import org.testng.annotations.Test;
  */
 public class AutomationPracticeChromeTest {
     private ChromeDriver driver;
+    private final String DRIVER_KEY = "webdriver.chrome.driver";
+    private final String DRIVER_PATH = "C:\\Program Files (x86)\\chromedriver\\chromedriver.exe";
+    private final String LOGGIN_URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
     private WebElement email;
     private WebElement password;
     private WebElement login;
@@ -36,9 +39,9 @@ public class AutomationPracticeChromeTest {
     }
 
    
-    @Test
+     @Test
     public void login_succes() {
-        driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+        driver.get(LOGGIN_URL);
         email = driver.findElement(By.id("email"));
         password = driver.findElement(By.id("passwd"));
         login = driver.findElement(By.id("SubmitLogin"));
@@ -51,7 +54,7 @@ public class AutomationPracticeChromeTest {
 
     @Test
     public void login_bad_password() { // alert alert-danger
-        driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+        driver.get(LOGGIN_URL);
         email = driver.findElement(By.id("email"));
         password = driver.findElement(By.id("passwd"));
         login = driver.findElement(By.id("SubmitLogin"));
@@ -68,7 +71,7 @@ public class AutomationPracticeChromeTest {
 
     @Test
     public void login_no_fields_set() {
-        driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+        driver.get(LOGGIN_URL);
         email = driver.findElement(By.id("email"));
         password = driver.findElement(By.id("passwd"));
         login = driver.findElement(By.id("SubmitLogin"));

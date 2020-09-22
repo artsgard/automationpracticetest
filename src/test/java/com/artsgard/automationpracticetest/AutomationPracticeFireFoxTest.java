@@ -13,6 +13,9 @@ import org.testng.annotations.Test;
 public class AutomationPracticeFireFoxTest {
 
     private FirefoxDriver driver;
+    private final String DRIVER_PATH = "C:\\Program Files (x86)\\geckodriver\\geckodriver.exe";
+    private final String DRIVER_KEY = "webdriver.gecko.driver";
+    private final String LOGGIN_URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
     private WebElement email;
     private WebElement password;
     private WebElement login;
@@ -23,7 +26,7 @@ public class AutomationPracticeFireFoxTest {
 
     @BeforeTest
     public void SetDriver() {
-        System.setProperty("webdriver.gecko.driver", "C:\\Program Files (x86)\\geckodriver\\geckodriver.exe");
+        System.setProperty(DRIVER_KEY, DRIVER_PATH);
         DesiredCapabilities dc = new DesiredCapabilities();
         dc.setCapability("marionatte", false);
         FirefoxOptions opt = new FirefoxOptions();
@@ -33,7 +36,7 @@ public class AutomationPracticeFireFoxTest {
 
     @Test
     public void login_succes() {
-        driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+        driver.get(LOGGIN_URL);
         email = driver.findElement(By.id("email"));
         password = driver.findElement(By.id("passwd"));
         login = driver.findElement(By.id("SubmitLogin"));
@@ -46,7 +49,7 @@ public class AutomationPracticeFireFoxTest {
 
     @Test
     public void login_bad_password() { // alert alert-danger
-        driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+        driver.get(LOGGIN_URL);
         email = driver.findElement(By.id("email"));
         password = driver.findElement(By.id("passwd"));
         login = driver.findElement(By.id("SubmitLogin"));
@@ -63,7 +66,7 @@ public class AutomationPracticeFireFoxTest {
 
     @Test
     public void login_no_fields_set() {
-        driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+        driver.get(LOGGIN_URL);
         email = driver.findElement(By.id("email"));
         password = driver.findElement(By.id("passwd"));
         login = driver.findElement(By.id("SubmitLogin"));
