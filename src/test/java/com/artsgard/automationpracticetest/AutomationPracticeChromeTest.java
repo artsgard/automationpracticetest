@@ -15,12 +15,14 @@ import org.testng.annotations.Test;
  * @author artsgard
  */
 public class AutomationPracticeChromeTest {
-    ChromeDriver driver;
-    WebElement email;
-    WebElement password;
-    WebElement login;
-    String errorUrl = "http://automationpractice.com/index.php?controller=authentication";
-    String succesUrl = "http://automationpractice.com/index.php?controller=my-account";
+    private ChromeDriver driver;
+    private WebElement email;
+    private WebElement password;
+    private WebElement login;
+    private final String AUTHENTICATION_URL = "http://automationpractice.com/index.php?controller=authentication";
+    private final String AUTHENTICATION_SUCCES_URL = "http://automationpractice.com/index.php?controller=my-account";
+    private final String ERROR_MESSAGE_BAD_CREDENTIALS = "Authentication failed.";
+    private final String ERROR_MESSAGE_EMPTY_CREDENTIALS = "An email address required.";
 
     @BeforeTest
     public void SetDriver() {
@@ -44,7 +46,7 @@ public class AutomationPracticeChromeTest {
         password.sendKeys("Ali12345");
         login.click();
         String expectedUrl = driver.getCurrentUrl();
-        Assert.assertEquals(expectedUrl, succesUrl);
+        Assert.assertEquals(expectedUrl, AUTHENTICATION_SUCCES_URL);
     }
 
     @Test
@@ -60,8 +62,8 @@ public class AutomationPracticeChromeTest {
         String expectedUrl = driver.getCurrentUrl();
         WebElement errorMessage = driver.findElement(By.className("alert-danger"));
         String errorMessageText = errorMessage.findElement(By.tagName("li")).getText();
-        Assert.assertEquals(errorMessageText, "Authentication failed.");
-        Assert.assertEquals(expectedUrl, errorUrl);
+        Assert.assertEquals(errorMessageText, ERROR_MESSAGE_BAD_CREDENTIALS);
+        Assert.assertEquals(expectedUrl, AUTHENTICATION_URL);
     }
 
     @Test
@@ -76,8 +78,8 @@ public class AutomationPracticeChromeTest {
         String expectedUrl = driver.getCurrentUrl();
         WebElement errorMessage = driver.findElement(By.className("alert-danger"));
         String errorMessageText = errorMessage.findElement(By.tagName("li")).getText();
-        Assert.assertEquals(errorMessageText, "An email address required.");
-        Assert.assertEquals(expectedUrl, errorUrl);
+        Assert.assertEquals(errorMessageText, ERROR_MESSAGE_EMPTY_CREDENTIALS);
+        Assert.assertEquals(expectedUrl, AUTHENTICATION_URL);
     }
 
     @AfterTest
