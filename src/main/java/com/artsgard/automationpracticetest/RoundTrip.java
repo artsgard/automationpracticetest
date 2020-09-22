@@ -70,10 +70,15 @@ public class RoundTrip {
         travelersLink = driver.findElement(By.xpath("//a[@role = 'button']"));
         travelersLink.click();
 
-        travelersPlusButton = driver.findElement(By.cssSelector("button[class='uitk-button uitk-button-small uitk-flex-item uitk-step-input-button']"));
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("uitk-button uitk-button-small uitk-flex-item uitk-step-input-button")));
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        travelersPlusButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("uitk-button uitk-button-small uitk-flex-item uitk-step-input-button")));
+        
         travelersPlusButton.click();
+ 
+        //travelersDoneButton = driver.findElement(By.cssSelector("button[class='uitk-button uitk-button-large uitk-button-fullWidth uitk-button-has-text uitk-button-primary uitk-button-floating']"));
+        travelersDoneButton = driver.findElement(By.xpath("//*[text() = 'done']"));
+        travelersDoneButton.click();
+        
         
         depCity = driver.findElement(By.id("location-field-leg1-origin-input"));
         depCity.sendKeys("value", "Luqa (MLA-Malta Intl.)");
