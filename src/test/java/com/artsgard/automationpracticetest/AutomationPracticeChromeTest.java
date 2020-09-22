@@ -53,7 +53,7 @@ public class AutomationPracticeChromeTest {
     }
 
     @Test
-    public void login_bad_password() { // alert alert-danger
+    public void login_bad_password() {
         driver.get(LOGGIN_URL);
         email = driver.findElement(By.id("email"));
         password = driver.findElement(By.id("passwd"));

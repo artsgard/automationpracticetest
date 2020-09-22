@@ -27,11 +27,7 @@ public class AutomationPracticeFireFoxTest {
     @BeforeTest
     public void SetDriver() {
         System.setProperty(DRIVER_KEY, DRIVER_PATH);
-        DesiredCapabilities dc = new DesiredCapabilities();
-        dc.setCapability("marionatte", false);
-        FirefoxOptions opt = new FirefoxOptions();
-        opt.merge(dc);
-        driver = new FirefoxDriver(opt);
+        driver = new FirefoxDriver();
     }
 
     @Test
@@ -48,7 +44,7 @@ public class AutomationPracticeFireFoxTest {
     }
 
     @Test
-    public void login_bad_password() { // alert alert-danger
+    public void login_bad_password() {
         driver.get(LOGGIN_URL);
         email = driver.findElement(By.id("email"));
         password = driver.findElement(By.id("passwd"));
